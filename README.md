@@ -1,7 +1,22 @@
 # This is test task of API
-**API POINTS**
 
-#### Authentication via JWT token inside HEADERS
+Running: 
+You can run project by the docker-compose
+simple running is
+```bash
+docker-compose build
+```
+```bash
+docker-compose up
+```
+
+#### As a result docker will up 2 containers API & BOT
+#### BOT will starts after 10 seconds and after complete work will start again.
+#### Result of bot work will be placed into file *output.std* in the folder __bot
+
+# API POINTS
+
+### Authentication works via JWT token inside HEADERS
 
 ```text
 So header will include
