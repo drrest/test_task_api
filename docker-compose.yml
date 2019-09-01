@@ -1,0 +1,28 @@
+version: "2.2"
+services:
+  api:
+    build: ./
+    working_dir: /opt/project
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && exec gunicorn test_task_api.wsgi:application --bind 0.0.0.0:8000 --workers 5"
+    volumes:
+      - ./test_task_api:/opt/project
+    ports:
+      - "8005:8000"
+    #healthcheck:
+    #    test: ["CMD", "curl", "-f", "http://localhost:8000/post/list"]
+    #    interval: 10s
+    #    timeout: 1s
+    #    retries: 1000000
+
+  bot:
+    image: testtask_api
+    working_dir: /opt/project/__bot
+    command: bash -c "echo 'We will wait for API starting ... 10 seconds ' && sleep 10s && python app.py"
+    restart: unless-stopped
+    volumes:
+      - ./test_task_api:/opt/project
+    #depends_on:
+    #  api:
+    #    condition: service_healthy
+    links:
+      - api
