@@ -2,7 +2,7 @@
 
 Running: 
 You can run project by the docker-compose
-simple running is
+
 ```bash
 docker-compose build
 ```
