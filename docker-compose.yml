@@ -15,7 +15,7 @@ services:
     #    retries: 1000000
 
   bot:
-    image: testtask_api
+    image: testtaskapi_api
     working_dir: /opt/project/__bot
     command: bash -c "echo 'We will wait for API starting ... 10 seconds ' && sleep 10s && python app.py"
     restart: unless-stopped
